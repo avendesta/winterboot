@@ -2,14 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <script src="http://localhost:35729/livereload.js"></script>
 
-<head>
+<head th:replace="layout :: site-head">
     <meta charset="UTF-8" />
     <title>Blog</title>
 </head>
 
 <body>
+<header th:replace="layout :: site-header"></header>
 <h1>Welcome to Spring MVC</h1>
 Now is: <b th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"></b>
+<footer th:replace="layout :: site-footer"></footer>
 </body>
 
 </html>
