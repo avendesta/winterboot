@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<script src="http://localhost:35729/livereload.js"></script>
 
 <head>
     <meta charset="UTF-8" />
@@ -8,7 +9,7 @@
 
 <body>
 <h1>Welcome to Spring MVC</h1>
-Now is: <b th:text="${execInfo.now.time}"></b>
+Now is: <b th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"></b>
 </body>
 
 </html>
