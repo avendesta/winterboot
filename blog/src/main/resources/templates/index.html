@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<script src="http://localhost:35729/livereload.js"></script>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layout :: site-head">
-    <meta charset="UTF-8" />
-    <title>Blog</title>
+    <title>Spring MVC Blog</title>
 </head>
+
 <body>
-<header th:replace="layout :: site-header"></header>
-<h1>Welcome to Spring MVC</h1>
-Now is: <b th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"></b>
-<footer th:replace="layout :: site-footer"></footer>
+
+<header th:replace="layout :: site-header" />
+
+<main id="posts">
+    <article th:each="p : ${latest3posts}">
+        <h2 class="title" th:text="${p.title}">Post Title</h2>
+        <div class="date">
+            <i>Posted on</i>
+            <span th:text="${#dates.format(p.date, 'dd-MMM-yyyy')}">19-Feb-2022</span>
+            <span th:if="${p.author}" th:remove="tag">
+          <i>by</i>
+          <span th:text="${p.author.fullName != null ?
+                        p.author.fullName : p.author.username}">Aven Desta</span>
+        </span>
+        </div>
+        <p class="content" th:utext="${p.body}">Post content</p>
+    </article>
+</main>
+
+<footer th:replace="layout :: site-footer" />
 </body>
 
 </html>
